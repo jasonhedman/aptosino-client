@@ -1,0 +1,2 @@
+
+export const rouletteModule = "roulette";
