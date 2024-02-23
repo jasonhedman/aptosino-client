@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Button, Card, Flex, Heading, HStack, SimpleGrid, Text, VStack} from "@chakra-ui/react";
+import {Button, Card, Flex, Heading, SimpleGrid, Text, VStack} from "@chakra-ui/react";
 
 import CoinAmountInput from "@/components/utilities/CoinAmountInput";
 import useSliderGame from "@/hooks/useSliderGame";
@@ -19,6 +19,7 @@ const SliderGame = () => {
         maxBet,
         maxMultiplier,
         feeBasisPoints,
+        disabled,
         onSubmit,
     } = useSliderGame()
 
@@ -111,6 +112,7 @@ const SliderGame = () => {
                     colorScheme={'brand'}
                     onClick={onSubmit}
                     w={'100%'}
+                    isDisabled={disabled}
                 >
                     Roll
                 </Button>

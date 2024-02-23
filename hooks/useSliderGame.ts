@@ -13,7 +13,7 @@ import useWallet from "@/hooks/useWallet";
 
 const useSliderGame = () => {
 
-    const { submitTransaction } = useWallet();
+    const { submitTransaction, connected } = useWallet();
 
     const {returnValue: minBet, loading: minBetLoading} = useViewFunction(minBetViewPayload);
     const {returnValue: maxBet, loading: maxBetLoading} = useViewFunction(maxBetViewPayload);
@@ -57,6 +57,7 @@ const useSliderGame = () => {
         setMultiplier,
         setPredicted,
         onSubmit,
+        disabled: !connected || coinAmount <= 0 || multiplier <= 0 || predicted < 0,
         loading: minBetLoading || maxBetLoading || maxMultiplierLoading || feeBasisPointsLoading,
         minBet: toAptos(parseInt(minBet ? minBet[0] as string : "0")),
         maxBet: toAptos(parseInt(maxBet ? maxBet[0] as string : "0")),
