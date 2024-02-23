@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-    Box,
-    Container,
-    useColorModeValue,
-} from '@chakra-ui/react';
+import {Box, Container} from '@chakra-ui/react';
 
 
 import Navbar, { navbarHeight } from '@/components/layout/navbar'
@@ -28,7 +24,6 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
             <Box
                 minH="100vh"
                 minW="100vw"
-                bg={useColorModeValue('blackAlpha.50', 'blackAlpha.700')}
             >
                 <Container
                     maxW='6xl'
