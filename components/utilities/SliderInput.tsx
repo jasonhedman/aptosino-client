@@ -15,9 +15,10 @@ interface Props {
     step?: number;
     label?: string;
     suffix?: string;
+    defaultValue?: number;
 }
 
-const SliderInput: React.FC<Props> = ({ value, setValue, min, max, step, label, suffix }) => {
+const SliderInput: React.FC<Props> = ({ value, setValue, min, max, step, label, suffix, defaultValue }) => {
     return (
         <FormControl>
             {label && <FormLabel>{label}</FormLabel>}
@@ -33,6 +34,7 @@ const SliderInput: React.FC<Props> = ({ value, setValue, min, max, step, label, 
                     step={step}
                     focusThumbOnChange={false}
                     colorScheme={'brand'}
+                    defaultValue={defaultValue}
                     flex={1}
                 >
                     <SliderTrack>

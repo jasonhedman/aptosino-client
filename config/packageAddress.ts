@@ -1,3 +1,3 @@
 
 export const aptosinoPackageAddress =
-    '0xa3883496c894715e7d4efc28a32b123390bbe63137c5fa460529e79c1d7d8e68';
+    '0xb2104bc99e57db595ad246a46ff3d57adce17fb33058703ae770c302d0a88b63';

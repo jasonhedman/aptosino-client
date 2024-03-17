@@ -3,42 +3,37 @@ import React from 'react';
 import {Button, Card, Flex, Heading, SimpleGrid, Text, VStack} from "@chakra-ui/react";
 
 import CoinAmountInput from "@/components/utilities/CoinAmountInput";
-import useSliderGame from "@/hooks/useSliderGame";
 import SliderInput from "@/components/utilities/SliderInput";
 
+import useDiceGame from "@/hooks/useDiceGame";
+
+import {useHouse} from "@/contexts/HouseContext";
+import {MAX_OUTCOME} from "@/config/modules/diceModule";
+import GameCard from "@/components/game/GameCard";
+import {dice} from "@/data/games";
+
 const SliderGame = () => {
+
+    const {
+        minBet,
+        maxBet,
+        feeBasisPoints
+    } = useHouse();
 
     const {
         coinAmount,
         setCoinAmount,
         predicted,
         setPredicted,
-        multiplier,
-        setMultiplier,
-        minBet,
-        maxBet,
-        maxMultiplier,
-        feeBasisPoints,
         disabled,
         onSubmit,
-    } = useSliderGame()
+        payout,
+    } = useDiceGame()
 
     return (
-        <Card
-            w={'100%'}
-            p={4}
-            gap={4}
+        <GameCard
+            game={dice}
         >
-            <VStack
-                alignItems={'left'}
-            >
-                <Heading>
-                    Dice Roll
-                </Heading>
-                <Text>
-                    Choose your multiplier and roll the dice. If the result is your predicted number, you win!
-                </Text>
-            </VStack>
             <VStack
                 alignItems={'left'}
                 spacing={2}
@@ -51,7 +46,7 @@ const SliderGame = () => {
                     Dice Roll Parameters
                 </Text>
                 <SimpleGrid
-                    columns={2}
+                    columns={3}
                     gap={2}
                     w={'100%'}
                 >
@@ -62,10 +57,7 @@ const SliderGame = () => {
                         Max Bet: {maxBet} APT
                     </Text>
                     <Text>
-                        Max Multiplier: {maxMultiplier}x
-                    </Text>
-                    <Text>
-                        Fee: {feeBasisPoints / 10000}%
+                        Fee: {feeBasisPoints / 100}%
                     </Text>
                 </SimpleGrid>
             </VStack>
@@ -79,19 +71,11 @@ const SliderGame = () => {
                 label="Bet Amount"
             />
             <SliderInput
-                value={multiplier}
-                setValue={setMultiplier}
-                min={2}
-                max={maxMultiplier}
-                step={1}
-                label="Multiplier"
-                suffix="x"
-            />
-            <SliderInput
                 value={predicted}
                 setValue={setPredicted}
-                min={0}
-                max={multiplier - 1}
+                min={1}
+                max={MAX_OUTCOME - 1}
+                defaultValue={MAX_OUTCOME / 2}
                 step={1}
                 label="Predicted Outcome"
                 suffix=""
@@ -106,7 +90,7 @@ const SliderGame = () => {
                 p={4}
             >
                 <Text>
-                    Risk {coinAmount} APT to win {coinAmount * (multiplier - feeBasisPoints / 10000)} APT
+                    Risk {coinAmount} APT to win {payout} APT
                 </Text>
                 <Button
                     colorScheme={'brand'}
@@ -117,7 +101,7 @@ const SliderGame = () => {
                     Roll
                 </Button>
             </Flex>
-        </Card>
+        </GameCard>
     );
 };
 
