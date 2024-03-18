@@ -2,7 +2,7 @@ import React from 'react';
 
 import dynamic from "next/dynamic";
 
-import {Box, Button, Flex, HStack, SimpleGrid, Text, useToast, VStack} from "@chakra-ui/react";
+import {Box, Button, Flex, HStack, Text, useToast, VStack} from "@chakra-ui/react";
 
 import { makeConfetti as makeConfettiService } from "@/services/confetti";
 

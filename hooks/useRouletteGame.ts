@@ -64,7 +64,7 @@ const useRouletteGame = () => {
                 amount: betAmounts[betTypeInt][index]
             } as Bet
         })
-    }).flat().filter((bet) => bet.amount > 0), [betAmounts, feeBasisPoints]);
+    }).flat().filter((bet) => bet.amount > 0), [betAmounts]);
 
     const totalBetAmount = useMemo(() => {
         return currentBets.reduce((acc, bet) => acc + bet.amount, 0);

@@ -1,8 +1,7 @@
 import React from 'react';
-import {Box, Button, Flex, HStack, IconButton, Text} from "@chakra-ui/react";
-import {DeleteIcon} from "@chakra-ui/icons";
-import {RiCoinFill} from "react-icons/ri";
-import {BiSolidCoin} from "react-icons/bi";
+
+import {Button} from "@chakra-ui/react";
+
 import CoinStack from "@/components/game/CoinStack";
 
 interface Props {

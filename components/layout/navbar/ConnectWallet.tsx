@@ -11,7 +11,8 @@ import {
     useClipboard,
     useToast,
     Image,
-    Flex, HStack, Text,
+    Flex,
+    HStack,
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 

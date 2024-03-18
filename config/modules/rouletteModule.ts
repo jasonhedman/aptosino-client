@@ -4,10 +4,10 @@ import {
     MoveValue, MoveVector,
     SimpleEntryFunctionArgumentTypes, U64, U8
 } from "@aptos-labs/ts-sdk";
+
 import {entryFunctionPayload, viewPayload} from "@/config/modules/utils";
 import {aptosinoPackageAddress} from "@/config/packageAddress";
-import {diceModule, rouletteModule} from "@/config/modules";
-import {u8} from "@noble/hashes/utils";
+import {rouletteModule} from "@/config/modules";
 
 export const NUM_SLOTS = 36;
 
