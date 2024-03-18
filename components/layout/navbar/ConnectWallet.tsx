@@ -17,7 +17,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons'
 
 import { FaWallet } from 'react-icons/fa'
 
-import { useWallet, Wallet } from '@aptos-labs/wallet-adapter-react'
+import { useWallet, Wallet } from '@/wallet-adapter/wallet-adapter-react'
 
 import { ellipsize } from '@/services/utils'
 import CoinBalance from "@/components/utilities/CoinBalance";

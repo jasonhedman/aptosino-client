@@ -20,7 +20,9 @@ interface Props {
 
 const SliderInput: React.FC<Props> = ({ value, setValue, min, max, step, label, suffix, defaultValue }) => {
     return (
-        <FormControl>
+        <FormControl
+            flex={1}
+        >
             {label && <FormLabel>{label}</FormLabel>}
             <HStack
                 w={'100%'}

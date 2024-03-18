@@ -1,6 +1,15 @@
 export enum BetTypes {
-    BLACK,
-    RED,
+    COLOR,
+    NUMBER,
+    EVEN_ODD,
+    DOZENS,
+    HALVES,
     // NUMBER,
     // EIGHTS
+}
+
+export interface Bet {
+    predictedOutcome: number[];
+    name: string;
+    amount: number;
 }

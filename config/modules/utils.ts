@@ -3,7 +3,7 @@ import {
     InputEntryFunctionData,
     InputViewRequestData,
     MoveStructId,
-    MoveValue,
+    MoveValue, Network,
     SimpleEntryFunctionArgumentTypes
 } from "@aptos-labs/ts-sdk";
 

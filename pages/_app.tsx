@@ -2,8 +2,8 @@ import React from "react";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
-import {AptosWalletAdapterProvider} from "@aptos-labs/wallet-adapter-react";
-import { PetraWallet } from "petra-plugin-wallet-adapter"
+import {AptosWalletAdapterProvider} from "@/wallet-adapter/wallet-adapter-react";
+import { PetraWallet } from "@/wallet-adapter/petra-plugin-wallet-adapter"
 
 import {AptosProvider} from "@/contexts/AptosContext";
 

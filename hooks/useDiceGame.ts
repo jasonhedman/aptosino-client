@@ -15,6 +15,7 @@ const useDiceGame = () => {
 
     const [coinAmount, setCoinAmountState] = useState(0);
     const [predicted, setPredictedResultState] = useState(MAX_OUTCOME / 2);
+    const [result, setResult] = useState<number>();
 
     const setCoinAmount = (amount: number) => {
         setCoinAmountState(amount);
@@ -26,18 +27,22 @@ const useDiceGame = () => {
 
     const onSubmit = async () => {
         if(coinAmount > 0 && predicted >= 0 && predicted < MAX_OUTCOME) {
-            await submitTransaction({
-                data: rollDiceEntryFunctionPayload(fromAptos(coinAmount), MAX_OUTCOME, predicted)
-            }, {
-                title: "Dice Roll Successful",
-                description: "Your roll has been submitted",
+            const res = await submitTransaction({
+                data: rollDiceEntryFunctionPayload(fromAptos(coinAmount), MAX_OUTCOME, predicted),
+                options: {
+                    maxGasAmount: 500,
+                }
             });
+            if(res) {
+                setResult(parseInt(res.events[res.events.length - 2].data.result));
+            }
         }
     }
 
     return {
         coinAmount,
         predicted,
+        result,
         setCoinAmount,
         setPredicted,
         onSubmit,
