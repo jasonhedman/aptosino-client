@@ -1,6 +1,6 @@
 import { createContext, ReactNode, FC, useContext, useState, useEffect, useCallback } from "react"
 
-import { useWallet } from "@aptos-labs/wallet-adapter-react";
+import { useWallet } from "@/wallet-adapter/wallet-adapter-react";
 
 import { Aptos } from "@aptos-labs/ts-sdk";
 import {getAptosClient} from "@/services/aptosClient";

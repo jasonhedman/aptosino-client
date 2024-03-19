@@ -1,9 +1,9 @@
 import Head from "next/head";
 
 import Layout from "@/components/layout";
-import SliderGame from "@/components/sliderGame";
+import Home from "@/components/home";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Head>
@@ -14,7 +14,7 @@ export default function Home() {
       </Head>
       <main>
         <Layout>
-            <SliderGame />
+            <Home />
         </Layout>
       </main>
     </>

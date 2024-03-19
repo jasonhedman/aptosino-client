@@ -1,6 +1,6 @@
 import { useToast } from "@chakra-ui/react";
 
-import {InputTransactionData, useWallet as useWalletAdapter} from "@aptos-labs/wallet-adapter-react";
+import {InputTransactionData, useWallet as useWalletAdapter} from "../wallet-adapter/wallet-adapter-react";
 
 import { useAptos } from "@/contexts/AptosContext";
 
@@ -11,7 +11,7 @@ interface ToastMessage {
 
 const useWallet = () => {
 
-    const { client, updateClient } = useAptos();
+    const { updateClient } = useAptos();
 
     const { 
         account, 
@@ -21,24 +21,26 @@ const useWallet = () => {
         network,
         connect, 
         disconnect, 
-        signAndSubmitTransaction
+        signAndSubmitTransaction,
     } = useWalletAdapter();
 
     const toast = useToast();
 
-    const submitTransaction = async (transaction: InputTransactionData, toastMessage: ToastMessage): Promise<boolean> => {
+    const submitTransaction = async (transaction: InputTransactionData, toastMessage?: ToastMessage) => {
         return signAndSubmitTransaction(transaction)
             .then(async (res) => {
                 if(res.success){
                     await updateClient();
-                    toast({
-                        title: toastMessage.title,
-                        description: toastMessage.description,
-                        status: "success",
-                        duration: 5000,
-                        isClosable: true,
-                    });
-                    return true;
+                    if(toastMessage) {
+                        toast({
+                            title: toastMessage.title,
+                            description: toastMessage.description,
+                            status: "success",
+                            duration: 5000,
+                            isClosable: true,
+                        });
+                    }
+                    return res;
                 } else {
                     toast({
                         title: "Transaction failed",
@@ -47,7 +49,7 @@ const useWallet = () => {
                         duration: 5000,
                         isClosable: true,
                     });
-                    return false;
+                    return null;
                 }
             })
             .catch((e) => {
@@ -59,7 +61,7 @@ const useWallet = () => {
                     duration: 5000,
                     isClosable: true,
                 });
-                return false
+                return null
             })
     }
 

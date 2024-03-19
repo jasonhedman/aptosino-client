@@ -1,4 +1,5 @@
 import {
+    EntryFunctionArgumentTypes,
     InputEntryFunctionData,
     InputViewRequestData,
     MoveStructId,
@@ -18,7 +19,7 @@ export const viewPayload = (
 
 export const entryFunctionPayload = (
     func: MoveStructId,
-    args: Array<SimpleEntryFunctionArgumentTypes>,
+    args: Array<SimpleEntryFunctionArgumentTypes> | Array<EntryFunctionArgumentTypes>,
     typeArgs?: Array<MoveStructId>
 ): InputEntryFunctionData => ({
     function: func,

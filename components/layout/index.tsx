@@ -29,7 +29,7 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
                     maxW='6xl'
                     justifyContent='center'
                     p={0}
-                    >
+                >
                     <Box
                         display='flex'
                         gap={4}
