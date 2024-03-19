@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Game} from "@/types/Game";
-import {Card, Image, Text} from "@chakra-ui/react";
+import {Button, Card, Image, Text} from "@chakra-ui/react";
 import Link from "next/link";
 
 interface Props {
@@ -14,20 +14,27 @@ const GameCard: React.FC<Props> = ({ game }) => {
             href={game.url}
             style={{
                 height: '100%',
-                width: '100%'
+                width: '100%',
             }}
         >
-            <Card
-                _hover={{
-                    transform: "scale(1.02)"
-                }}
+            <Button
                 h={'100%'}
                 animation={'all 0.2s ease-in-out'}
+                aspectRatio={1}
+                display={'flex'}
+                flexDirection={'column'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                gap={4}
+                p={2}
+                variant={'outline'}
+                colorScheme={'brand'}
+                w={'100%'}
             >
                 <Image
                     alt={game.title}
                     src={game.icon}
-                    boxSize={12}
+                    boxSize={24}
                 />
                 <Text
                     fontSize={'lg'}
@@ -35,12 +42,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
                 >
                     {game.title}
                 </Text>
-                <Text
-                    fontSize={'sm'}
-                >
-                    {game.description}
-                </Text>
-            </Card>
+            </Button>
         </Link>
     );
 };

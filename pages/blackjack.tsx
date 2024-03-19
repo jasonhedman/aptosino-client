@@ -1,9 +1,9 @@
 import Head from "next/head";
 
 import Layout from "@/components/layout";
-import RouletteGame from "@/components/game/roulette";
+import BlackjackGame from "@/components/game/blackjack";
 
-export default function Home() {
+export default function Blackjack() {
     return (
         <>
             <Head>
@@ -14,7 +14,7 @@ export default function Home() {
             </Head>
             <main>
                 <Layout>
-                    <RouletteGame />
+                    <BlackjackGame />
                 </Layout>
             </main>
         </>

@@ -7,12 +7,11 @@ import GameCard from "@/components/home/GameCard";
 const Home = () => {
     return (
         <VStack
-            alignItems={'left'}
             spacing={8}
+            w={'100%'}
+            px={60}
         >
-            <VStack
-                alignItems={'left'}
-            >
+            <VStack>
                 <Heading>
                     Aptosino
                 </Heading>
@@ -27,6 +26,7 @@ const Home = () => {
                     md: 3
                 }}
                 gap={4}
+                w={'100%'}
             >
                 {
                     games.map(game => (

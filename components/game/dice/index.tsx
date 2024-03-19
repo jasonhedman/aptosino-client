@@ -5,7 +5,7 @@ import {Button, Flex, HStack, keyframes, Text, useToast, VStack} from "@chakra-u
 import CoinAmountInput from "@/components/utilities/CoinAmountInput";
 import SliderInput from "@/components/utilities/SliderInput";
 
-import useDiceGame from "@/hooks/useDiceGame";
+import useDiceGame from "@/hooks/games/useDiceGame";
 
 import {useHouse} from "@/contexts/HouseContext";
 import {MAX_OUTCOME} from "@/config/modules/diceModule";
