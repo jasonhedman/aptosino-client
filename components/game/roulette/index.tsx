@@ -16,7 +16,7 @@ const Wheel = dynamic(
 import GameCard from "@/components/game/GameCard";
 import BetButton from "@/components/game/roulette/BetButton";
 
-import useRouletteGame, {betNames, bets} from "@/hooks/useRouletteGame";
+import useRouletteGame, {betNames, bets} from "@/hooks/games/useRouletteGame";
 
 import {roulette} from "@/data/games";
 
