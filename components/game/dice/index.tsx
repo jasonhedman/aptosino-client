@@ -99,6 +99,16 @@ const SliderGame = () => {
                     w={'100%'}
                     spacing={4}
                 >
+                    <SliderInput
+                        value={predicted}
+                        setValue={setPredicted}
+                        min={1}
+                        max={MAX_OUTCOME - 1}
+                        defaultValue={MAX_OUTCOME / 2}
+                        step={1}
+                        label="Predicted Outcome"
+                        suffix=""
+                    />
                     <VStack
                         alignItems={'left'}
                         w={'100%'}
@@ -118,16 +128,6 @@ const SliderGame = () => {
                             To win: {payout.toFixed(4)} APT
                         </Text>
                     </VStack>
-                    <SliderInput
-                        value={predicted}
-                        setValue={setPredicted}
-                        min={1}
-                        max={MAX_OUTCOME - 1}
-                        defaultValue={MAX_OUTCOME / 2}
-                        step={1}
-                        label="Predicted Outcome"
-                        suffix=""
-                    />
                 </VStack>
                 <Flex
                     gap={4}

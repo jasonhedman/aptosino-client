@@ -38,6 +38,7 @@ const Board: React.FC<Props> = ({ boardAddress, resetBoard }) => {
                 </Text>
                 <HStack
                     spacing={4}
+                    fontSize={'sm'}
                 >
                     <Text>
                         Number of Mines: {board.numMines}
@@ -47,11 +48,20 @@ const Board: React.FC<Props> = ({ boardAddress, resetBoard }) => {
                     </Text>
                 </HStack>
             </VStack>
-            <BoardDisplay
-                tiles={tiles}
-                selectCell={selectCell}
-                isGameOver={isGameOver}
-            />
+            <VStack>
+                <Text
+                    fontSize={'xs'}
+                    fontWeight={'bold'}
+                >
+                    Pick a Cell to Reveal
+                </Text>
+                <BoardDisplay
+                    tiles={tiles}
+                    selectCell={selectCell}
+                    isGameOver={isGameOver}
+                    isGameActive={!isGameOver}
+                />
+            </VStack>
             {
                 isGameOver ? (
                     <Button
@@ -61,13 +71,21 @@ const Board: React.FC<Props> = ({ boardAddress, resetBoard }) => {
                         Play Again
                     </Button>
                 ) : (
-                    <Button
-                        onClick={cashOut}
-                        colorScheme={'brand'}
-                        isDisabled={isGameOver}
-                    >
-                        Cash Out {payout.toFixed(4)} APT
-                    </Button>
+                    <VStack>
+                        <Text
+                            fontSize={'sm'}
+                            fontWeight={'bold'}
+                        >
+                            or
+                        </Text>
+                        <Button
+                            onClick={cashOut}
+                            colorScheme={'brand'}
+                            isDisabled={isGameOver}
+                        >
+                            Cash Out {payout.toFixed(4)} APT
+                        </Button>
+                    </VStack>
                 )
             }
 

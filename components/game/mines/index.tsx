@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {VStack} from "@chakra-ui/react";
+import {Text, VStack} from "@chakra-ui/react";
 
 import GameCard from "@/components/game/GameCard";
 import CreateBoard from "@/components/game/mines/CreateBoard";
@@ -42,10 +42,17 @@ const MinesGame = () => {
                             w={'100%'}
                             spacing={4}
                         >
+                            <Text
+                                fontSize={'xl'}
+                                fontWeight={'bold'}
+                            >
+                                Create a Mines Board
+                            </Text>
                             <BoardDisplay
                                 tiles={boardDisplay}
                                 selectCell={() => {}}
                                 isGameOver={false}
+                                isGameActive={false}
                             />
                             <CreateBoard
                                 betAmount={betAmount}

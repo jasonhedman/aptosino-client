@@ -47,6 +47,12 @@ const useMines = () => {
         }
     }, [address]);
 
+    useEffect(() => {
+        if(numMines >= numRows * numCols) {
+            setNumMines(numRows * numCols - 1);
+        }
+    }, [numRows, numCols]);
+
     const startGame = async () => {
         if(isDisabled) return;
         let res = await submitTransaction({

@@ -80,6 +80,17 @@ const useMinesBoard = (boardAddress: string) => {
                 setTiles(newTiles);
                 const newGemCoordinates = board.gemCoordinates.concat({x: predicted_row, y: predicted_col});
                 setBoard({...board, gemCoordinates: newGemCoordinates});
+                let resolvedEvent = events.find((event) => event.type.includes("GameResolved"));
+                if(resolvedEvent) {
+                    setIsGameOver(true);
+                    toast({
+                        title: "You Won!",
+                        description: "You discovered all of the gems without hitting a mine",
+                        status: "success",
+                        duration: 9000,
+                        isClosable: true,
+                    })
+                }
             } else {
                 const mineRevealedEvent = revealedEvent.data as GemRevealedEvent;
                 const {predicted_row, predicted_col} = mineRevealedEvent;

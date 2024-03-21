@@ -8,10 +8,11 @@ interface Props {
     isGem: boolean,
     isRevealed: boolean,
     onClick: () => void,
-    isGameOver: boolean
+    isGameOver: boolean,
+    isGameActive: boolean
 }
 
-const Tile: React.FC<Props> = ({ isGem, isRevealed, onClick, isGameOver }) => {
+const Tile: React.FC<Props> = ({ isGem, isRevealed, onClick, isGameOver, isGameActive }) => {
 
     let buttonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -50,6 +51,9 @@ const Tile: React.FC<Props> = ({ isGem, isRevealed, onClick, isGameOver }) => {
             w={'100%'}
             h={'100%'}
             ref={buttonRef}
+            cursor={isRevealed || isGameOver || !isGameActive ? 'not-allowed' : 'pointer'}
+
+
         />
     );
 };
