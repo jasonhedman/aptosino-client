@@ -21,7 +21,6 @@ const StartGame: React.FC<Props> = ({ betAmount, setBetAmount, startGame }) => {
                 decimals={8}
                 label={'Bet Amount'}
                 symbol={'APT'}
-                placeholder={'Enter bet amount'}
             />
             <Button
                 onClick={startGame}
