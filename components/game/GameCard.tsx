@@ -21,6 +21,7 @@ const GameCard: React.FC<Props> = ({ game, children }) => {
                 <Image
                     src={game.icon}
                     boxSize={16}
+                    alt={game.title}
                 />
                 <VStack
                     alignItems={'left'}

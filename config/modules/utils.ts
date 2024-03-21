@@ -4,7 +4,6 @@ import {
     InputViewRequestData,
     MoveStructId,
     MoveValue,
-    SimpleEntryFunctionArgumentTypes
 } from "@aptos-labs/ts-sdk";
 
 export const viewPayload = (
@@ -19,7 +18,7 @@ export const viewPayload = (
 
 export const entryFunctionPayload = (
     func: MoveStructId,
-    args: Array<SimpleEntryFunctionArgumentTypes> | Array<EntryFunctionArgumentTypes>,
+    args: Array<EntryFunctionArgumentTypes>,
     typeArgs?: Array<MoveStructId>
 ): InputEntryFunctionData => ({
     function: func,

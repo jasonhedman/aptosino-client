@@ -1,15 +1,14 @@
 import React from 'react';
 
-import {Button, HStack} from "@chakra-ui/react";
 
 import GameCard from "@/components/game/GameCard";
-import CoinAmountInput from "@/components/utilities/CoinAmountInput";
 import BlackjackHand from "@/components/game/blackjack/BlackjackHand";
+import StartGame from "@/components/game/blackjack/StartGame";
 
-import useStartBlackjack from "@/hooks/games/useStartBlackjack";
+import useStartBlackjack from "@/hooks/games/blackjack/useStartBlackjack";
 
 import {blackjack} from "@/data/games";
-import StartGame from "@/components/game/blackjack/StartGame";
+
 
 const BlackjackGame = () => {
 

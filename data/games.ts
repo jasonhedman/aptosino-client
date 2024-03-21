@@ -18,8 +18,8 @@ export const mines: Game = {
     title: "Mines",
     description: "Create a 5x5 board by choosing a number of mines. With each gem you find, your payout increases. You can cash out after picking at least one gem, but if you hit a mine, the game is over!",
     icon: "/mines.png",
-    url: "/roulette",
-    comingSoon: true
+    url: "/mines",
+    comingSoon: false
 };
 
 export const blackjack: Game = {
@@ -27,7 +27,6 @@ export const blackjack: Game = {
     description: "Hit until you reach 21.",
     icon: "/blackjack.png",
     url: "/blackjack",
-    comingSoon: true
 }
 
 export const poker: Game = {
@@ -49,8 +48,8 @@ export const slots: Game = {
 const games: Game[] = [
     dice,
     roulette,
-    mines,
     blackjack,
+    mines,
     poker,
     slots
 ]

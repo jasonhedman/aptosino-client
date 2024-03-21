@@ -2,7 +2,8 @@ import {
     EntryFunctionArgumentTypes,
     MoveStructId,
     MoveValue, MoveVector,
-    SimpleEntryFunctionArgumentTypes, U64, U8
+    U64,
+    U8
 } from "@aptos-labs/ts-sdk";
 
 import {entryFunctionPayload, viewPayload} from "@/config/modules/utils";
@@ -14,7 +15,7 @@ export const NUM_SLOTS = 36;
 const rouletteViewFunction = (functionName: string, typeArgs?: Array<MoveStructId>, args?: Array<MoveValue>) =>
     viewPayload(`${aptosinoPackageAddress}::${rouletteModule}::${functionName}`, typeArgs, args);
 
-const rouletteEntryFunction = (functionName: string, args: Array<EntryFunctionArgumentTypes> | Array<SimpleEntryFunctionArgumentTypes>, typeArgs?: Array<MoveStructId>) =>
+const rouletteEntryFunction = (functionName: string, args: Array<EntryFunctionArgumentTypes>, typeArgs?: Array<MoveStructId>) =>
     entryFunctionPayload(`${aptosinoPackageAddress}::${rouletteModule}::${functionName}`, args, typeArgs);
 
 export const spinWheelEntryFunctionPayload = (betAmounts: number[], predictedOutcomes: number[][]) =>
