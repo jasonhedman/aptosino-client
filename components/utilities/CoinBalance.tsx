@@ -7,10 +7,11 @@ interface Props {
     address: string,
     coinType: MoveStructId,
     symbol: string,
-    decimals: number
+    decimals: number,
+    fontSize?: string,
 }
 
-const CoinBalance: React.FC<Props> = ({ address, coinType, symbol, decimals}) => {
+const CoinBalance: React.FC<Props> = ({ address, coinType, symbol, decimals, fontSize}) => {
 
     const {balance, loading} = useCoinBalance(address, coinType, decimals);
 
@@ -20,7 +21,7 @@ const CoinBalance: React.FC<Props> = ({ address, coinType, symbol, decimals}) =>
 
     return (
         <Text
-            fontSize="sm"
+            fontSize={fontSize}
             fontWeight="bold"
         >
             {balance} {symbol}

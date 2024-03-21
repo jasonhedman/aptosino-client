@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {Button, HStack, Text, VStack} from "@chakra-ui/react";
+import {Box, Button, HStack, Text, VStack} from "@chakra-ui/react";
 
 import StartGame from "@/components/game/blackjack/StartGame";
 import Hand from "@/components/game/blackjack/Hand";
@@ -51,13 +51,17 @@ const BlackjackHand: React.FC<Props> = ({ handAddress, betAmount: newBetAmount, 
             <HStack
                 w={'100%'}
             >
-                <Hand
-                    cards={playerCards}
-                    isPlayer={true}
-                    handValue={playerHandValue}
+                <Box
                     ref={playerHandRef}
-                    shouldFlip
-                />
+                    flex={1}
+                >
+                    <Hand
+                        cards={playerCards}
+                        isPlayer={true}
+                        handValue={playerHandValue}
+                        shouldFlip
+                    />
+                </Box>
                 <Hand
                     cards={dealerCards}
                     isPlayer={false}

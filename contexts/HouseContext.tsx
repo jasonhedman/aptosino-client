@@ -5,7 +5,7 @@ import { toAptos } from "@/services/utils";
 import useViewFunction from "@/hooks/useViewFunction";
 
 import {
-    feeBasisPointsViewPayload,
+    feeBasisPointsViewPayload, houseAddressViewPayload, houseBalanceViewPayload,
     maxBetViewPayload,
     maxMultiplierViewPayload,
     minBetViewPayload
@@ -17,6 +17,8 @@ interface HouseContextType {
     maxBet: number,
     maxMultiplier: number,
     feeBasisPoints: number,
+    houseAddress: string,
+    houseBalance: number,
 }
 
 export const HouseContext = createContext<HouseContextType>({
@@ -25,6 +27,8 @@ export const HouseContext = createContext<HouseContextType>({
     maxBet: 0,
     maxMultiplier: 0,
     feeBasisPoints: 0,
+    houseAddress: "",
+    houseBalance: 0,
 });
 
 export const useHouse = () => useContext(HouseContext);
@@ -39,6 +43,8 @@ export const HouseProvider : FC<HouseContextProps> = ({ children }) => {
     const {returnValue: maxBet, loading: maxBetLoading} = useViewFunction(maxBetViewPayload);
     const {returnValue: maxMultiplier, loading: maxMultiplierLoading} = useViewFunction(maxMultiplierViewPayload);
     const {returnValue: feeBasisPoints, loading: feeBasisPointsLoading} = useViewFunction(feeBasisPointsViewPayload);
+    const {returnValue: houseAddress} = useViewFunction(houseAddressViewPayload);
+    const {returnValue: houseBalance} = useViewFunction(houseBalanceViewPayload);
 
     return (
         <HouseContext.Provider
@@ -48,6 +54,8 @@ export const HouseProvider : FC<HouseContextProps> = ({ children }) => {
                 maxBet: toAptos(parseInt(maxBet ? maxBet[0] as string : "0")),
                 maxMultiplier: (maxMultiplier ? maxMultiplier[0] : 0) as number,
                 feeBasisPoints: (feeBasisPoints ? feeBasisPoints[0] : 0) as number,
+                houseAddress: houseAddress ? houseAddress[0] as string : "",
+                houseBalance: toAptos(parseInt(houseBalance ? houseBalance[0] as string : "0")),
             }}
         >
             {children}

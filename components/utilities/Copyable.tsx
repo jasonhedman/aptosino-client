@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 
-import { Box, Text, useClipboard, useColorModeValue, useToast } from '@chakra-ui/react';
+import {Box, Text, TextProps, useClipboard, useColorModeValue, useToast} from '@chakra-ui/react';
 
-interface Props {
+interface Props extends TextProps {
     display: string;
     copyText: string;
 }
 
-const Copyable: React.FC<Props> = ({ display, copyText }) => {
+const Copyable: React.FC<Props> = ({ display, copyText, ...rest }) => {
 
   const { onCopy, setValue } = useClipboard(copyText)
 
@@ -42,7 +42,9 @@ const Copyable: React.FC<Props> = ({ display, copyText }) => {
         }}
         transition="background-color 0.2s"
     >
-        <Text>
+        <Text
+            {...rest}
+        >
             {display}
         </Text>
     </Box>

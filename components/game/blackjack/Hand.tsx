@@ -2,22 +2,20 @@ import React from 'react';
 
 import {Card} from "@/types/Card";
 import PlayingCard from "@/components/playingCard";
-import {Box, HStack, Text, VStack} from "@chakra-ui/react";
+import {HStack, Text, VStack} from "@chakra-ui/react";
 
 interface Props {
     cards: Card[],
     isPlayer: boolean,
     handValue: number[],
     shouldFlip?: boolean,
-    ref?: React.RefObject<HTMLDivElement>,
 }
 
-const Hand: React.FC<Props> = ({ cards, isPlayer, shouldFlip, ref, handValue }) => {
+const Hand: React.FC<Props> = ({ cards, isPlayer, shouldFlip, handValue }) => {
     return (
         <VStack
             backgroundColor={isPlayer ? 'brand.500' : undefined}
             rounded={'md'}
-            ref={ref}
             flex={1}
             py={4}
         >
@@ -32,15 +30,39 @@ const Hand: React.FC<Props> = ({ cards, isPlayer, shouldFlip, ref, handValue }) 
                 justifyContent={'center'}
             >
                 {
-                    cards.length === 0 ? (<Box height={150} width={100} />) : (
-                        cards.map((card, index) => (
+                    cards.map((card, index) => (
+                        <PlayingCard
+                            key={`${card.suit}-${card.rank}-${index}`}
+                            card={card}
+                            height={150}
+                            shouldFlip={shouldFlip}
+                        />
+                    ))
+                }
+                {
+                    isPlayer ? (
+                        cards.length < 2 && (
+                            Array.from({length: 2 - cards.length}).map((_, index) => (
+                                <PlayingCard
+                                    key={index}
+                                    card={{
+                                        suit: 1,
+                                        rank: 1
+                                    }}
+                                    height={150}
+                                />
+                            ))
+                        )
+                    ) : (
+                        cards.length < 1 && (
                             <PlayingCard
-                                key={`${card.suit}-${card.rank}-${index}`}
-                                card={card}
+                                card={{
+                                    suit: 1,
+                                    rank: 1
+                                }}
                                 height={150}
-                                shouldFlip={shouldFlip}
                             />
-                        ))
+                        )
                     )
                 }
             </HStack>

@@ -131,7 +131,7 @@ const useBlackjack = (handAddress: string) => {
             await new Promise((resolve) => setTimeout(resolve, 1000 * index));
             setPlayerCards(playerCards.slice(0, index + 1));
         }))
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         setDealerCards(dealerCards);
     }, [client]);
 

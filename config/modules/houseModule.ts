@@ -1,7 +1,7 @@
 import {
     EntryFunctionArgumentTypes,
     MoveStructId,
-    MoveValue,
+    MoveValue, U64,
 } from "@aptos-labs/ts-sdk";
 
 import {aptosinoPackageAddress} from "@/config/packageAddress";
@@ -24,7 +24,15 @@ export const houseBalanceViewPayload = houseViewFunction('get_house_balance');
 export const houseSharesSupplyViewPayload = houseViewFunction('get_house_shares_supply');
 
 export const houseSharesAmountFromDepositAmountViewPayload = (depositAmount: number) =>
-    houseViewFunction('get_house_shares_amount_from_deposit_amount', undefined, [depositAmount]);
+    houseViewFunction('get_house_shares_amount_from_deposit_amount', undefined, [depositAmount.toString()]);
 
 export const withdrawAmountFromSharesAmountViewPayload = (sharesAmount: number) =>
-    houseViewFunction('get_withdraw_amount_from_shares_amount', undefined, [sharesAmount]);
+    houseViewFunction('get_withdraw_amount_from_shares_amount', undefined, [sharesAmount.toString()]);
+
+export const depositEntryPayload = (amount: number) =>
+    houseEntryFunction('deposit', [new U64(amount)]);
+
+export const withdrawEntryPayload = (amount: number) =>
+    houseEntryFunction('withdraw', [new U64(amount)]);
+
+export const houseCoin = `${aptosinoPackageAddress}::${houseModule}::HouseShares`;
