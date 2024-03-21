@@ -1,20 +1,20 @@
 import Head from "next/head";
 
 import Layout from "@/components/layout";
-import BlackjackGame from "@/components/game/blackjack";
+import MinesGame from "@/components/game/mines";
 
-export default function Blackjack() {
+export default function Mines() {
     return (
         <>
             <Head>
-                <title>Blackjack - Aptosino</title>
-                <meta name="description" content="Classic card game implemented on-chain" />
+                <title>Mines - Aptosino</title>
+                <meta name="description" content="Test your apetite for risk in a high-stakes game of chance!" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
                 <Layout>
-                    <BlackjackGame />
+                    <MinesGame />
                 </Layout>
             </main>
         </>

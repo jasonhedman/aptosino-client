@@ -1,18 +1,17 @@
 import {
+    EntryFunctionArgumentTypes,
     MoveStructId,
     MoveValue,
-    SimpleEntryFunctionArgumentTypes,
 } from "@aptos-labs/ts-sdk";
 
 import {aptosinoPackageAddress} from "@/config/packageAddress";
 import {houseModule} from "@/config/modules";
 import {entryFunctionPayload, viewPayload} from "@/config/modules/utils";
 
-
 const houseViewFunction = (functionName: string, typeArgs?: Array<MoveStructId>, args?: Array<MoveValue>) =>
     viewPayload(`${aptosinoPackageAddress}::${houseModule}::${functionName}`, typeArgs, args);
 
-const houseEntryFunction = (functionName: string, args: Array<SimpleEntryFunctionArgumentTypes>, typeArgs?: Array<MoveStructId>) =>
+const houseEntryFunction = (functionName: string, args: Array<EntryFunctionArgumentTypes>, typeArgs?: Array<MoveStructId>) =>
     entryFunctionPayload(`${aptosinoPackageAddress}::${houseModule}::${functionName}`, args, typeArgs);
 
 export const houseAddressViewPayload = houseViewFunction('get_house_address');

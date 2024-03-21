@@ -6,8 +6,8 @@ import {
     Flex,
     HStack,
     Image,
-    Button,
-    Box, Text
+    Box,
+    Text
 } from '@chakra-ui/react'
 
 import ConnectWallet from './ConnectWallet';
@@ -34,13 +34,10 @@ const Navbar : React.FC = () => {
             <Link
                 href='/'
             >
-                <Button
-                    variant='ghost'
-                    colorScheme='brand'
-                    px={0}
-                    gap={4}
+                <HStack
+                    spacing={4}
                 >
-                    <Image 
+                    <Image
                         src="/logo.png"
                         height={12}
                         width={12}
@@ -49,10 +46,11 @@ const Navbar : React.FC = () => {
                     <Text
                         fontSize='2xl'
                         fontWeight='bold'
+                        color={'brand.500'}
                     >
                         Aptosino
                     </Text>
-                </Button>
+                </HStack>
             </Link>
             <Box
                 display={{ base: 'none', md: 'flex' }}

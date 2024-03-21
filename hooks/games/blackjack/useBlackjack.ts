@@ -58,7 +58,6 @@ const useBlackjack = (handAddress: string) => {
         let bestPlayerValue =  Math.max(...validPlayerValues.length ? validPlayerValues : playerHandValue);
         let validDealerValues = dealerHandValue.filter((value) => value <= 21);
         let bestDealerValue = Math.max(...validDealerValues.length ? validDealerValues : dealerHandValue);
-        console.log(bestPlayerValue, bestDealerValue);
         if(bestPlayerValue > 21) {
             setResult(Results.BUST);
             toast({
@@ -123,7 +122,7 @@ const useBlackjack = (handAddress: string) => {
         }
     }
 
-    const { returnValue: betAmount, loading, error} =
+    const { returnValue: betAmount} =
         useViewFunction(getBetAmountViewPayload(address));
 
     const fetchCards = useCallback(async (handAddress: string) => {
@@ -149,7 +148,7 @@ const useBlackjack = (handAddress: string) => {
         const res = await submitTransaction({
             data: hitEntryFunctionPayload(),
             options: {
-                maxGasAmount: 100000
+                maxGasAmount: 10000
             }
         })
         if(res) {
@@ -170,7 +169,10 @@ const useBlackjack = (handAddress: string) => {
     const stand = async () => {
         if(!handAddress) return;
         let res = await submitTransaction({
-            data: standEntryFunctionPayload()
+            data: standEntryFunctionPayload(),
+            options: {
+                maxGasAmount: 10000
+            }
         })
         if(res) {
             let dealerCards = (res.events[res.events.length - 2].data.dealer_cards as string[]).map(deserializeCard);

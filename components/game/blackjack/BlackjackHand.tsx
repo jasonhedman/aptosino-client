@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Button, HStack, Text, VStack} from "@chakra-ui/react";
 import PlayingCard from "@/components/playingCard";
-import useBlackjack, {GameStates, Results} from "@/hooks/games/useBlackjack";
+import useBlackjack, {GameStates, Results} from "@/hooks/games/blackjack/useBlackjack";
 import {makeConfetti} from "@/services/confetti";
 import StartGame from "@/components/game/blackjack/StartGame";
 

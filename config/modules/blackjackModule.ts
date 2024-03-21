@@ -1,4 +1,8 @@
-import {MoveStructId, MoveValue, SimpleEntryFunctionArgumentTypes} from "@aptos-labs/ts-sdk";
+import {
+    EntryFunctionArgumentTypes,
+    MoveStructId,
+    MoveValue, U64,
+} from "@aptos-labs/ts-sdk";
 
 import {entryFunctionPayload, viewPayload} from "@/config/modules/utils";
 import {aptosinoPackageAddress} from "@/config/packageAddress";
@@ -7,11 +11,11 @@ import {blackjackModule} from "@/config/modules";
 const blackjackViewFunction = (functionName: string, typeArgs?: Array<MoveStructId>, args?: Array<MoveValue>) =>
     viewPayload(`${aptosinoPackageAddress}::${blackjackModule}::${functionName}`, typeArgs, args);
 
-const blackjackEntryFunction = (functionName: string, args: Array<SimpleEntryFunctionArgumentTypes>, typeArgs?: Array<MoveStructId>) =>
+const blackjackEntryFunction = (functionName: string, args: Array<EntryFunctionArgumentTypes>, typeArgs?: Array<MoveStructId>) =>
     entryFunctionPayload(`${aptosinoPackageAddress}::${blackjackModule}::${functionName}`, args, typeArgs);
 
 export const startGameEntryFunctionPayload = (bet: number) =>
-    blackjackEntryFunction('start_game', [bet]);
+    blackjackEntryFunction('start_game', [new U64(bet)]);
 
 export const hitEntryFunctionPayload = () =>
     blackjackEntryFunction('hit', []);

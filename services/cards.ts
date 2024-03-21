@@ -1,11 +1,11 @@
-import {getPlayerCardsViewPayload} from "@/config/modules/blackjackModule";
-
 import {Aptos, InputViewRequestData} from "@aptos-labs/ts-sdk";
+
+import {deserializeU8Vector} from "@/services/utils";
 
 import {Card, Rank, Suit} from "@/types/Card";
 
 export const deserializeCard = (cardString: string): Card => {
-    let cardArr = Array.from(Buffer.from(cardString.slice(2), "hex"));
+    let cardArr = deserializeU8Vector(cardString);
     return {
         rank: cardArr[0] as Rank,
         suit: cardArr[1] as Suit

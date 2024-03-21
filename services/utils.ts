@@ -14,3 +14,5 @@ export const round = (num: number, precision = 2) => {
     const factor = Math.pow(10, precision);
     return Math.round(num * factor) / factor;
 }
+
+export const deserializeU8Vector = (encoding: string) => Array.from(Buffer.from(encoding.slice(2), "hex"))

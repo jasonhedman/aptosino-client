@@ -39,7 +39,10 @@ const useStartBlackjack = () => {
     const startGame = async () => {
         if(betAmount <= 0) return;
         let res = await submitTransaction({
-            data: startGameEntryFunctionPayload(fromAptos(betAmount))
+            data: startGameEntryFunctionPayload(fromAptos(betAmount)),
+            options: {
+                maxGasAmount: 10000,
+            }
         })
         if (res) {
             fetchGameData(address);
