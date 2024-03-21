@@ -2,21 +2,21 @@ import {Game} from "@/types/Game";
 
 export const dice: Game = {
     title: "Dice",
-    description: "Pick a number between 1 and 100. If a number is rolled that is less than or equal to your pick, you win!",
+    description: "Test your luck by betting on the outcome of a thrilling 100-sided dice roll! If the outcome is less than your prediction, you win!",
     url: "/dice",
     icon: "/dice.png",
 }
 
 export const roulette: Game = {
     title: "Roulette",
-    description: "Pick combinations of numbers between 1 and 36. If the ball lands on one of your numbers, you win!",
+    description: "Place your bets on a spinning wheel for the opportunity to win big in a modern version of a casino classic!",
     icon: "/roulette.png",
     url: "/roulette"
 }
 
 export const mines: Game = {
     title: "Mines",
-    description: "Create a 5x5 board by choosing a number of mines. With each gem you find, your payout increases. You can cash out after picking at least one gem, but if you hit a mine, the game is over!",
+    description: "Navigate a virtual minefield, carefully uncovering gems and avoiding mines to secure big winnings!",
     icon: "/mines.png",
     url: "/mines",
     comingSoon: false
@@ -24,7 +24,7 @@ export const mines: Game = {
 
 export const blackjack: Game = {
     title: "Blackjack",
-    description: "Hit until you reach 21.",
+    description: "Aim to beat the dealer by getting as close to 21 without going over!",
     icon: "/blackjack.png",
     url: "/blackjack",
 }

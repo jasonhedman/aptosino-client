@@ -9,14 +9,14 @@ const Home = () => {
         <VStack
             spacing={8}
             w={'100%'}
-            px={60}
+            maxW={'640px'}
         >
             <VStack>
                 <Heading>
                     Aptosino
                 </Heading>
                 <Text>
-                    The first provably-fair, truly-random blockchain casino.
+                    The first provably-fair, full-transparent, on-chain casino.
                 </Text>
             </VStack>
             <SimpleGrid
@@ -37,6 +37,13 @@ const Home = () => {
                     ))
                 }
             </SimpleGrid>
+            <Text
+                fontSize={'sm'}
+                textAlign={'center'}
+                opacity={0.75}
+            >
+                Disclaimer: This is a demo site and is NOT intended for real use. The games are for demo purposes only and do not offer real money gambling or an opportunity to win real money or prizes. The games are solely intended to display the capabilities of a fully on-chain casino.
+            </Text>
         </VStack>
     );
 };

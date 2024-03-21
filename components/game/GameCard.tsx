@@ -16,7 +16,7 @@ const GameCard: React.FC<Props> = ({ game, children }) => {
             gap={4}
         >
             <HStack
-                spacing={8}
+                spacing={4}
             >
                 <Image
                     src={game.icon}
@@ -25,6 +25,7 @@ const GameCard: React.FC<Props> = ({ game, children }) => {
                 />
                 <VStack
                     alignItems={'left'}
+                    spacing={0}
                 >
                     <Heading>
                         {game.title}

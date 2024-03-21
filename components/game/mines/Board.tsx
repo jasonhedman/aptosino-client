@@ -20,7 +20,9 @@ const Board: React.FC<Props> = ({ boardAddress, resetBoard }) => {
         cashOut,
     } = useMinesBoard(boardAddress);
 
-    if(!board || !tiles) return (<Skeleton h={'100px'} w={'100%'} />);
+    if(!board || !tiles) return (<Skeleton h={'500px'} w={'100%'} />);
+
+    let remainingGems = board.numRows * board.numCols - board.numMines - board.gemCoordinates.length;
 
     return (
         <VStack
@@ -41,10 +43,7 @@ const Board: React.FC<Props> = ({ boardAddress, resetBoard }) => {
                         Number of Mines: {board.numMines}
                     </Text>
                     <Text>
-                        Remaining Gems: {board.numRows * board.numCols - board.numMines - board.gemCoordinates.length}
-                    </Text>
-                    <Text>
-                        Payout: {isGameOver ? 0 : payout.toFixed(4)} APT
+                        Remaining Gems: {remainingGems}
                     </Text>
                 </HStack>
             </VStack>
@@ -67,7 +66,7 @@ const Board: React.FC<Props> = ({ boardAddress, resetBoard }) => {
                         colorScheme={'brand'}
                         isDisabled={isGameOver}
                     >
-                        Cash Out
+                        Cash Out {payout.toFixed(4)} APT
                     </Button>
                 )
             }

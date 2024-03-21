@@ -26,6 +26,7 @@ const CreateBoard: React.FC<Props> = ({ betAmount, setBetAmount, numCols, setNum
                 setAmount={setBetAmount}
                 decimals={8}
                 label={"Bet Amount"}
+                symbol={"APT"}
             />
             <HStack
                 w={'100%'}

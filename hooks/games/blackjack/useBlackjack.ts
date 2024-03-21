@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useMemo, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 
 import useWallet from "@/hooks/useWallet";
 
@@ -17,6 +17,7 @@ import {useAptos} from "@/contexts/AptosContext";
 import useViewFunction from "@/hooks/useViewFunction";
 import {toAptos} from "@/services/utils";
 import {useToast} from "@chakra-ui/react";
+import useDelayedMemo from "@/hooks/useDelayedMemo";
 
 export enum GameStates {
     PLAYING = "Playing",
@@ -45,13 +46,8 @@ const useBlackjack = (handAddress: string) => {
     const [gameState, setGameState] = useState<GameStates>(GameStates.PLAYING);
     const [result, setResult] = useState<Results>();
 
-    const playerHandValue = useMemo(() => {
-        return getHandValue(playerCards);
-    }, [playerCards]);
-
-    const dealerHandValue = useMemo(() => {
-        return getHandValue(dealerCards);
-    }, [dealerCards]);
+    const playerHandValue = useDelayedMemo(() => getHandValue(playerCards), [playerCards], 500);
+    const dealerHandValue = useDelayedMemo(() => getHandValue(dealerCards), [dealerCards], 500);
 
     const resolveGame = (playerHandValue: number[], dealerHandValue: number[]) => {
         let validPlayerValues = playerHandValue.filter((value) => value <= 21);
@@ -131,12 +127,18 @@ const useBlackjack = (handAddress: string) => {
             getCards(client, getDealerCardsViewPayload(handAddress))
         ]);
         if(!playerCards || !dealerCards) return;
-        setPlayerCards(playerCards);
+        await Promise.all(Array.from({length: playerCards.length}, async (_, index) => {
+            await new Promise((resolve) => setTimeout(resolve, 1000 * index));
+            setPlayerCards(playerCards.slice(0, index + 1));
+        }))
+        await new Promise((resolve) => setTimeout(resolve, 500));
         setDealerCards(dealerCards);
     }, [client]);
 
     useEffect(() => {
         if(handAddress) {
+            setPlayerCards([]);
+            setDealerCards([]);
             fetchCards(handAddress);
             setResult(undefined);
             setGameState(GameStates.PLAYING);
@@ -154,10 +156,17 @@ const useBlackjack = (handAddress: string) => {
         if(res) {
             const gameResolvedEvent = res.events.find((event: {type: string}) => event.type.includes("blackjack::GameResolved"));
             if(gameResolvedEvent) {
+                // add the player card, then each of the dealers cards with 500 ms between each, then resolve the game
                 let playerCards = (gameResolvedEvent.data.player_cards as string[]).map(deserializeCard);
-                let dealerCards = (gameResolvedEvent.data.dealer_cards as string[]).map(deserializeCard);
-                setPlayerCards(playerCards)
-                setDealerCards(dealerCards);
+                let finalDealerCards = (gameResolvedEvent.data.dealer_cards as string[]).map(deserializeCard);
+                setPlayerCards(playerCards);
+                await new Promise((resolve) => setTimeout(resolve, 500));
+                let newDealerCards = finalDealerCards.filter((_, index) => index >= dealerCards.length);
+                for (const dealerCard of newDealerCards) {
+                    setDealerCards((prev) => [...prev, dealerCard]);
+                    await new Promise((resolve) => setTimeout(resolve, 1000));
+                }
+                await new Promise((resolve) => setTimeout(resolve, 500));
                 resolveGame(getHandValue(playerCards), getHandValue(dealerCards));
                 setGameState(GameStates.RESOLVED);
             } else {
@@ -175,9 +184,14 @@ const useBlackjack = (handAddress: string) => {
             }
         })
         if(res) {
-            let dealerCards = (res.events[res.events.length - 2].data.dealer_cards as string[]).map(deserializeCard);
-            setDealerCards(dealerCards);
-            resolveGame(playerHandValue, getHandValue(dealerCards));
+            let finalDealerCards = (res.events[res.events.length - 2].data.dealer_cards as string[]).map(deserializeCard);
+            let newDealerCards = finalDealerCards.filter((_, index) => index >= dealerCards.length);
+            for (const dealerCard of newDealerCards) {
+                setDealerCards((prev) => [...prev, dealerCard]);
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+            }
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            resolveGame(playerHandValue, getHandValue(finalDealerCards));
             setGameState(GameStates.RESOLVED);
         }
     }

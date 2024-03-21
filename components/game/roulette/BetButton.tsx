@@ -37,14 +37,13 @@ const BetButton: React.FC<Props> = ({ title, betAmount, colorScheme, incrementAm
             }
         >
             {
-                betAmount > 0 && (
+                betAmount > 0 ? (
                     <CoinStack
                         amount={betAmount}
                         color={"#ad8c40"}
                     />
-                )
+                ) : (title)
             }
-            {title}
         </Button>
     );
 };

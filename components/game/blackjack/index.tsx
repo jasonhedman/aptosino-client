@@ -8,6 +8,8 @@ import StartGame from "@/components/game/blackjack/StartGame";
 import useStartBlackjack from "@/hooks/games/blackjack/useStartBlackjack";
 
 import {blackjack} from "@/data/games";
+import {VStack} from "@chakra-ui/react";
+import HandPreview from "@/components/game/blackjack/HandPreview";
 
 
 const BlackjackGame = () => {
@@ -24,11 +26,16 @@ const BlackjackGame = () => {
             {
                 handAddress == null
                     ? (
-                        <StartGame
-                            betAmount={betAmount}
-                            setBetAmount={setBetAmount}
-                            startGame={startGame}
-                        />
+                        <VStack
+                            w={'100%'}
+                        >
+                            <HandPreview />
+                            <StartGame
+                                betAmount={betAmount}
+                                setBetAmount={setBetAmount}
+                                startGame={startGame}
+                            />
+                        </VStack>
                     )
                     : (
                         <BlackjackHand

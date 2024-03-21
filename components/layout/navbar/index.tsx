@@ -7,7 +7,7 @@ import {
     HStack,
     Image,
     Box,
-    Text
+    Heading
 } from '@chakra-ui/react'
 
 import ConnectWallet from './ConnectWallet';
@@ -43,13 +43,13 @@ const Navbar : React.FC = () => {
                         width={12}
                         alt='Aptosino Logo'
                     />
-                    <Text
+                    <Heading
                         fontSize='2xl'
                         fontWeight='bold'
                         color={'brand.500'}
                     >
                         Aptosino
-                    </Text>
+                    </Heading>
                 </HStack>
             </Link>
             <Box

@@ -17,6 +17,7 @@ import {
 
 import { Event } from "@/types/Event";
 import {GemRevealedEvent, MinesBoard, Tile} from "@/types/Mines";
+import {useHouse} from "@/contexts/HouseContext";
 
 
 const useMinesBoard = (boardAddress: string) => {
@@ -24,6 +25,8 @@ const useMinesBoard = (boardAddress: string) => {
     const toast = useToast();
 
     const { address, submitTransaction } = useWallet();
+
+    const { feeBasisPoints } = useHouse();
 
     const { client } = useAptos();
 
@@ -127,7 +130,7 @@ const useMinesBoard = (boardAddress: string) => {
         tiles,
         isGameOver,
         payout: payoutMultiplier && board?.betAmount
-            ? parseInt(payoutMultiplier[0] as string) * board.betAmount / parseInt(payoutMultiplier[1] as string)
+            ? parseInt(payoutMultiplier[0] as string) * board.betAmount / parseInt(payoutMultiplier[1] as string) * (10000 - feeBasisPoints) / 10000
             : 0,
         selectCell,
         cashOut,

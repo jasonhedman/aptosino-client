@@ -30,7 +30,7 @@ export const bets = {
 export const betNames = {
     [BetTypes.COLOR]: ["Red", "Black"],
     [BetTypes.NUMBER]: Array.from({length: NUM_SLOTS}, (_, i) => (i + 1).toString()),
-    [BetTypes.EVEN_ODD]: ["Off", "Even"],
+    [BetTypes.EVEN_ODD]: ["Odd", "Even"],
     [BetTypes.DOZENS]: ["1-12", "13-24", "25-36"],
     [BetTypes.HALVES]: ["1-18", "19-36"]
 }
@@ -54,6 +54,7 @@ const useRouletteGame = () => {
     const [betAmounts, setBetAmounts] = useState(initialBetAmounts());
     const [isSpinning, setIsSpinning] = useState(false);
     const [prizeNumber, setPrizeNumber] = useState<number>(0);
+    const [betIncrement, setBetIncrement] = useState(1);
 
     const currentBets = useMemo(() => Object.keys(bets).map((betType) => {
         let betTypeInt = parseInt(betType) as BetTypes;
@@ -125,7 +126,9 @@ const useRouletteGame = () => {
         resetBets,
         onSubmit,
         stopSpinning,
+        setBetIncrement,
         betAmounts,
+        betIncrement,
         disabled: !connected || currentBets.length === 0 || totalBetAmount > maxBet,
         payouts,
         currentBets,

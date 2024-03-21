@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Box, BoxProps, Text, useColorModeValue, VStack} from "@chakra-ui/react";
+import {Box, BoxProps, Image, Text, VStack} from "@chakra-ui/react";
 
 import {Suit, Rank, Card} from "@/types/Card";
 
@@ -75,44 +75,124 @@ const NumberAndSuit: React.FC<NumberAndSuitProps> = ({ rank, suit, ...rest }) =>
 
 interface Props {
     card: Card,
-    height: number
+    height: number,
+    shouldFlip?: boolean,
+    flipOffset?: number,
 }
 
-const PlayingCard: React.FC<Props> = ({ card, height }) => {
+const PlayingCard: React.FC<Props> = ({ card, height, shouldFlip, flipOffset }) => {
+
+    const [isFlipped, setIsFlipped] = React.useState(false)
+
+    React.useEffect(() => {
+        if (shouldFlip) {
+            const timeout = setTimeout(() => {
+                setIsFlipped(true);
+            }, 500 + (flipOffset || 0))
+            return () => clearTimeout(timeout)
+        }
+    }, [shouldFlip])
+
     return (
         <Box
             aspectRatio={2/3}
-            position={'relative'}
             height={height}
-            borderWidth={1}
-            borderRadius={4}
-            borderColor={useColorModeValue('black', 'white')}
             color={resolveSuitColor(card.suit)}
-            bg={'white'}
+            style={{
+                perspective: '1000px',
+            }}
         >
-            <NumberAndSuit
-                rank={card.rank}
-                suit={card.suit}
-                top={1}
-                left={1}
-            />
-            <Text
-                fontSize={'6xl'}
-                lineHeight={1}
-                position={'absolute'}
-                top={'50%'}
-                left={'50%'}
-                transform={'translate(-50%, -50%)'}
+            <Box
+                position={'relative'}
+                style={{
+                    transformStyle: 'preserve-3d',
+                }}
+                transition={'transform 0.5s '}
+                w={'100%'}
+                h={'100%'}
+                transform={isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'}
+                borderWidth={1}
+                borderColor={'black'}
+                rounded={'md'}
             >
-                {resolveSuitFragment(card.suit)}
-            </Text>
-            <NumberAndSuit
-                rank={card.rank}
-                suit={card.suit}
-                bottom={1}
-                right={1}
-                transform={'rotate(180deg)'}
-            />
+                <Box
+                    position={'absolute'}
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    transform={isFlipped ? 'scaleX(-1)' : 'scaleX(1)'}
+                    bg={'white'}
+                    rounded={'md'}
+                >
+                    <Box
+                        position={'relative'}
+                        style={{
+                            backfaceVisibility: 'hidden',
+                        }}
+                        w={'100%'}
+                        h={'100%'}
+                    >
+                        <NumberAndSuit
+                            rank={card.rank}
+                            suit={card.suit}
+                            top={1}
+                            left={1}
+                        />
+                        <Text
+                            fontSize={'6xl'}
+                            lineHeight={1}
+                            position={'absolute'}
+                            top={'50%'}
+                            left={'50%'}
+                            transform={'translate(-50%, -50%)'}
+                        >
+                            {resolveSuitFragment(card.suit)}
+                        </Text>
+                        <NumberAndSuit
+                            rank={card.rank}
+                            suit={card.suit}
+                            bottom={1}
+                            right={1}
+                            transform={'rotate(180deg)'}
+                        />
+                    </Box>
+                </Box>
+                <Box
+                    w={'100%'}
+                    h={'100%'}
+                    position={'absolute'}
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    style={{
+                        backfaceVisibility: 'hidden',
+                    }}
+                    // transform={isFlipped ? 'scaleX(1)' : 'scaleX(-1)'}
+                    bg={'white'}
+                    rounded={'md'}
+                >
+                    <VStack
+                        position={'absolute'}
+                        top={'50%'}
+                        left={'50%'}
+                        transform={'translate(-50%, -50%)'}
+                    >
+                        <Image
+                            src={'/logo.png'}
+                            boxSize={12}
+                            alt={'Aptosino'}
+                        />
+                        <Text
+                            fontWeight={'bold'}
+                            color={'black'}
+                        >
+                            Aptosino
+                        </Text>
+                    </VStack>
+                </Box>
+            </Box>
         </Box>
     );
 };

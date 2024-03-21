@@ -2,7 +2,7 @@ import React from 'react';
 
 import dynamic from "next/dynamic";
 
-import {Box, Button, Flex, HStack, Text, useToast, VStack} from "@chakra-ui/react";
+import {Box, Button, Flex, HStack, IconButton, Text, useToast, VStack} from "@chakra-ui/react";
 
 import { makeConfetti as makeConfettiService } from "@/services/confetti";
 
@@ -23,6 +23,7 @@ import {roulette} from "@/data/games";
 import {BetTypes} from "@/types/Roulette";
 import wheelData from "@/components/game/roulette/wheelData";
 import {DeleteIcon} from "@chakra-ui/icons";
+import CoinStack from "@/components/game/CoinStack";
 
 const RouletteGame = () => {
 
@@ -33,7 +34,9 @@ const RouletteGame = () => {
         updateBet,
         onSubmit,
         stopSpinning,
+        setBetIncrement,
         betAmounts,
+        betIncrement,
         payouts,
         isSpinning,
         prizeNumber,
@@ -100,8 +103,9 @@ const RouletteGame = () => {
                         fontSize={14}
                         fontWeight={900}
                         pointerProps={{
+                            src: '/picker.png',
                             style: {
-                                stroke: 'black'
+                                stroke: 'black',
                             }
                         }}
                     />
@@ -123,6 +127,27 @@ const RouletteGame = () => {
                 spacing={1}
                 w={'full'}
             >
+                <HStack>
+                    {
+                        [0.1, 1, 5, 10].map((value) => (
+                            <IconButton
+                                key={value}
+                                aria-label={`Bet ${value} APT`}
+                                icon={
+                                    <CoinStack
+                                        amount={value}
+                                        color={betIncrement === value ? 'white' : '#ad8c40'}
+                                        textColor={betIncrement === value ? 'brand.500' : 'white'}
+                                        bgColor={betIncrement === value ? 'brand.500' : 'transparent'}
+                                    />
+                                }
+                                onClick={() => setBetIncrement(value)}
+                                colorScheme={'brand'}
+                                variant={betIncrement === value ? 'solid' : 'outline'}
+                            />
+                        ))
+                    }
+                </HStack>
                 <Flex
                     w={'full'}
                     gap={1}
@@ -131,14 +156,14 @@ const RouletteGame = () => {
                         key={betNames[BetTypes.HALVES][0]}
                         title={betNames[BetTypes.HALVES][0]}
                         betAmount={betAmounts[BetTypes.HALVES][0]}
-                        incrementAmount={1}
+                        incrementAmount={betIncrement}
                         updateBet={(amount: number) => updateBet(BetTypes.HALVES, 0, amount)}
                     />
                     <BetButton
                         key={betNames[BetTypes.EVEN_ODD][0]}
                         title={betNames[BetTypes.EVEN_ODD][0]}
                         betAmount={betAmounts[BetTypes.EVEN_ODD][0]}
-                        incrementAmount={1}
+                        incrementAmount={betIncrement}
                         updateBet={(amount: number) => updateBet(BetTypes.EVEN_ODD, 0, amount)}
                     />
                     {
@@ -148,7 +173,7 @@ const RouletteGame = () => {
                                     key={betNames[BetTypes.COLOR][index]}
                                     title={betNames[BetTypes.COLOR][index]}
                                     betAmount={betAmounts[BetTypes.COLOR][index]}
-                                    incrementAmount={1}
+                                    incrementAmount={betIncrement}
                                     updateBet={(amount: number) => updateBet(BetTypes.COLOR, index, amount)}
                                     backgroundColor={betNames[BetTypes.COLOR][index] === 'Red' ? '#a30904' : '#1f1f21'}
                                     textColor={'white'}
@@ -161,14 +186,14 @@ const RouletteGame = () => {
                         key={betNames[BetTypes.EVEN_ODD][1]}
                         title={betNames[BetTypes.EVEN_ODD][1]}
                         betAmount={betAmounts[BetTypes.EVEN_ODD][1]}
-                        incrementAmount={1}
+                        incrementAmount={betIncrement}
                         updateBet={(amount: number) => updateBet(BetTypes.EVEN_ODD, 1, amount)}
                     />
                     <BetButton
                         key={betNames[BetTypes.HALVES][1]}
                         title={betNames[BetTypes.HALVES][1]}
                         betAmount={betAmounts[BetTypes.HALVES][1]}
-                        incrementAmount={1}
+                        incrementAmount={betIncrement}
                         updateBet={(amount: number) => updateBet(BetTypes.HALVES, 1, amount)}
                     />
                 </Flex>
@@ -187,7 +212,7 @@ const RouletteGame = () => {
                                     key={index}
                                     title={betNames[BetTypes.NUMBER][index]}
                                     betAmount={betAmounts[BetTypes.NUMBER][index]}
-                                    incrementAmount={1}
+                                    incrementAmount={betIncrement}
                                     updateBet={(amount: number) => updateBet(BetTypes.NUMBER, index, amount)}
                                     backgroundColor={bets[BetTypes.COLOR][0].includes(index) ? '#a30904' : '#1f1f21'}
                                     textColor={'white'}
@@ -208,7 +233,7 @@ const RouletteGame = () => {
                                     key={betNames[BetTypes.DOZENS][index]}
                                     title={betNames[BetTypes.DOZENS][index]}
                                     betAmount={betAmounts[BetTypes.DOZENS][index]}
-                                    incrementAmount={1}
+                                    incrementAmount={betIncrement}
                                     updateBet={(amount: number) => updateBet(BetTypes.DOZENS, index, amount)}
                                 />
                             )
@@ -223,7 +248,7 @@ const RouletteGame = () => {
                         fontWeight={'bold'}
                         fontSize={'sm'}
                     >
-                        Total Bet: {totalBetAmount.toFixed(2)} APT
+                        Total Bet: {Math.round(totalBetAmount * 100) / 100} APT
                     </Text>
                     <Button
                         onClick={resetBets}

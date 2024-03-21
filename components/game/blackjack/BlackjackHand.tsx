@@ -1,9 +1,14 @@
 import React, {useEffect} from 'react';
+
 import {Button, HStack, Text, VStack} from "@chakra-ui/react";
-import PlayingCard from "@/components/playingCard";
-import useBlackjack, {GameStates, Results} from "@/hooks/games/blackjack/useBlackjack";
-import {makeConfetti} from "@/services/confetti";
+
 import StartGame from "@/components/game/blackjack/StartGame";
+import Hand from "@/components/game/blackjack/Hand";
+
+import useBlackjack, {GameStates, Results} from "@/hooks/games/blackjack/useBlackjack";
+
+import {makeConfetti} from "@/services/confetti";
+
 
 interface Props {
     handAddress: string;
@@ -45,77 +50,20 @@ const BlackjackHand: React.FC<Props> = ({ handAddress, betAmount: newBetAmount, 
         >
             <HStack
                 w={'100%'}
-                justifyContent={'space-between'}
             >
-                <VStack
-                    p={4}
-                    backgroundColor={'brand.500'}
-                    rounded={'md'}
+                <Hand
+                    cards={playerCards}
+                    isPlayer={true}
+                    handValue={playerHandValue}
                     ref={playerHandRef}
-                >
-                    <Text
-                        color={'white'}
-                        fontWeight={'bold'}
-                    >
-                        Your Hand
-                    </Text>
-                    <HStack>
-                        {
-                            playerCards.map((card, index) => (
-                                <PlayingCard
-                                    key={index}
-                                    card={card}
-                                    height={150}
-                                />
-                            ))
-                        }
-                    </HStack>
-                    <Text
-                        color={'white'}
-                        fontWeight={'bold'}
-                    >
-                        Hand Value{playerHandValue.length > 1 ? 's' : ''}: {playerHandValue.toString()}
-                    </Text>
-                    {
-                        gameState === GameStates.PLAYING && (
-                            <HStack>
-                                <Button
-                                    onClick={hit}
-                                >
-                                    Hit
-                                </Button>
-                                <Button
-                                    onClick={stand}
-                                >
-                                    Stand
-                                </Button>
-                            </HStack>
-                        )
-                    }
-                </VStack>
-                <VStack>
-                    <Text
-                        fontWeight={'bold'}
-                    >
-                        Dealer&apos;s Hand
-                    </Text>
-                    <HStack>
-                        {
-                            dealerCards.map((card, index) => (
-                                <PlayingCard
-                                    key={index}
-                                    card={card}
-                                    height={150}
-                                />
-                            ))
-                        }
-                    </HStack>
-                    <Text
-                        fontWeight={'bold'}
-                    >
-                        Hand Value{dealerHandValue.length > 1 ? 's' : ''}: {dealerHandValue.toString()}
-                    </Text>
-                </VStack>
+                    shouldFlip
+                />
+                <Hand
+                    cards={dealerCards}
+                    isPlayer={false}
+                    handValue={dealerHandValue}
+                    shouldFlip
+                />
             </HStack>
             <HStack
                 w={'100%'}
@@ -139,12 +87,40 @@ const BlackjackHand: React.FC<Props> = ({ handAddress, betAmount: newBetAmount, 
                             />
                         </VStack>
                     ) : (
-                        <Text
-                            fontWeight={'bold'}
-                            fontSize={'lg'}
+                        <VStack
+                            w={'100%'}
                         >
-                            Wager: {betAmount} APT
-                        </Text>
+                            {
+                                gameState === GameStates.PLAYING && (
+                                    <HStack
+                                        w={'100%'}
+                                    >
+                                        <Button
+                                            onClick={hit}
+                                            flex={1}
+                                            variant={'outline'}
+                                            colorScheme={'brand'}
+                                        >
+                                            Hit
+                                        </Button>
+                                        <Button
+                                            onClick={stand}
+                                            flex={1}
+                                            colorScheme={'brand'}
+                                            variant={'outline'}
+                                        >
+                                            Stand
+                                        </Button>
+                                    </HStack>
+                                )
+                            }
+                            <Text
+                                fontWeight={'bold'}
+                                fontSize={'lg'}
+                            >
+                                Wager: {betAmount} APT
+                            </Text>
+                        </VStack>
                     )
                 }
             </HStack>

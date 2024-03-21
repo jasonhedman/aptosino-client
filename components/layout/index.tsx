@@ -26,7 +26,7 @@ const DefaultLayout: React.FC<Props> = ({ children }) => {
                 minW="100vw"
             >
                 <Container
-                    maxW='6xl'
+                    maxW='4xl'
                     justifyContent='center'
                     p={0}
                 >

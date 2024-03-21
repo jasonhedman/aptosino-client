@@ -20,7 +20,7 @@ const rouletteEntryFunction = (functionName: string, args: Array<EntryFunctionAr
 
 export const spinWheelEntryFunctionPayload = (betAmounts: number[], predictedOutcomes: number[][]) =>
     rouletteEntryFunction('spin_wheel', [
-        new MoveVector(betAmounts.map(bet => new U64(bet))),
+        new MoveVector(betAmounts.map(bet => new U64(Math.round(bet)))),
         new MoveVector(predictedOutcomes.map(outcomes => new MoveVector(outcomes.map(outcome => new U8(outcome)))))
     ]);
 

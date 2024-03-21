@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from "next/link";
 
-import {Box, Button, Image, Text, Tooltip} from "@chakra-ui/react";
+import {Box, Button, Image, Text, Tooltip, useColorModeValue} from "@chakra-ui/react";
 
 import {Game} from "@/types/Game";
 
@@ -34,6 +34,7 @@ const GameButton: React.FC<Props> = ({ game }) => {
             <Text
                 fontSize={'lg'}
                 fontWeight={'bold'}
+                color={useColorModeValue('black', 'white')}
             >
                 {game.title}
             </Text>

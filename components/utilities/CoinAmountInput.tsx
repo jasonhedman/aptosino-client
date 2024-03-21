@@ -1,6 +1,15 @@
 import React, {useEffect, useState} from 'react';
 
-import {FormControl, FormLabel, InputGroup, InputRightAddon, NumberInput, NumberInputField} from "@chakra-ui/react";
+import {
+    Button,
+    FormControl,
+    FormLabel,
+    HStack,
+    InputGroup,
+    InputRightAddon,
+    NumberInput,
+    NumberInputField
+} from "@chakra-ui/react";
 
 interface Props {
     amount: number;
@@ -64,6 +73,25 @@ const CoinAmountInput: React.FC<Props> = ({ decimals, max, min, amount, setAmoun
                     symbol && <InputRightAddon>{symbol}</InputRightAddon>
                 }
             </InputGroup>
+            <HStack
+                mt={2}
+                w={'100%'}
+            >
+                {
+                    [0.1, 1, 5, 10].map((value) => (
+                        <Button
+                            key={value}
+                            onClick={() => setAmount(amount + value)}
+                            size={'xs'}
+                            colorScheme={'brand'}
+                            variant={'outline'}
+                            flex={1}
+                        >
+                            + {value} {symbol}
+                        </Button>
+                    ))
+                }
+            </HStack>
         </FormControl>
     );
 };

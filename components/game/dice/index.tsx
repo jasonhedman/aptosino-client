@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 
-import {Button, Flex, HStack, keyframes, Text, useToast, VStack} from "@chakra-ui/react";
+import {Button, Flex, keyframes, Text, useToast, VStack} from "@chakra-ui/react";
 
 import CoinAmountInput from "@/components/utilities/CoinAmountInput";
 import SliderInput from "@/components/utilities/SliderInput";
@@ -76,7 +76,6 @@ const SliderGame = () => {
                     isClosable: true,
                 });
                 if(success) {
-                    console.log(diceRef.current);
                     if(diceRef.current) {
                         const rect = diceRef.current.getBoundingClientRect();
                         const x = (rect.left + rect.width / 2) / window.innerWidth;
@@ -96,13 +95,13 @@ const SliderGame = () => {
                 spacing={2}
                 w={'100%'}
             >
-                <HStack
+                <VStack
                     w={'100%'}
                     spacing={4}
                 >
                     <VStack
                         alignItems={'left'}
-                        flex={1}
+                        w={'100%'}
                     >
                         <CoinAmountInput
                             decimals={8}
@@ -129,7 +128,7 @@ const SliderGame = () => {
                         label="Predicted Outcome"
                         suffix=""
                     />
-                </HStack>
+                </VStack>
                 <Flex
                     gap={4}
                     direction={'column'}
@@ -151,15 +150,13 @@ const SliderGame = () => {
                                 fontWeight={'bold'}
                                 animation={isAnimating ? `${roll} 0.1s infinite linear` : undefined}
                                 display={'inline-block'}
-                                color={'white'}
                             >
                                 {resultDisplay ? resultDisplay : '?'}
                             </Text>
                             <Text
                                 fontSize={'sm'}
                                 fontWeight={'bold'}
-                                color={'white'}
-                                opacity={0.5}
+                                opacity={0.8}
                             >
                                 Click to Roll
                             </Text>

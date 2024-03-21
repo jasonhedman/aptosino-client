@@ -30,11 +30,10 @@ export const getHandValue = (cards: Card[]): number[] => {
         let newValues: number[] = [];
         values.forEach((value) => {
             newValues.push(value + Math.min(card.rank, 10));
-            if(card.rank === 1) {
-                newValues.push(value + 11);
-            }
+            if(card.rank === 1) newValues.push(value + 11);
         })
         values = newValues;
     })
-    return values;
+    let filteredValues = values.filter((value) => value <= 21);
+    return (filteredValues.length ? filteredValues : [Math.min(...values)]);
 }

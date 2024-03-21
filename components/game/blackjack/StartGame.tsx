@@ -1,6 +1,8 @@
 import React from 'react';
+
+import {Button, VStack} from "@chakra-ui/react";
+
 import CoinAmountInput from "@/components/utilities/CoinAmountInput";
-import {Button, HStack} from "@chakra-ui/react";
 
 interface Props {
     betAmount: number;
@@ -10,9 +12,8 @@ interface Props {
 
 const StartGame: React.FC<Props> = ({ betAmount, setBetAmount, startGame }) => {
     return (
-        <HStack
+        <VStack
             w={'100%'}
-            alignItems={'flex-end'}
         >
             <CoinAmountInput
                 amount={betAmount}
@@ -20,14 +21,16 @@ const StartGame: React.FC<Props> = ({ betAmount, setBetAmount, startGame }) => {
                 decimals={8}
                 label={'Bet Amount'}
                 symbol={'APT'}
+                placeholder={'Enter bet amount'}
             />
             <Button
                 onClick={startGame}
                 colorScheme={'brand'}
+                w={'100%'}
             >
                 Start Game
             </Button>
-        </HStack>
+        </VStack>
     );
 };
 
