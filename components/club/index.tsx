@@ -71,11 +71,13 @@ const Club = () => {
             <HStack
                 spacing={8}
                 w={'100%'}
-                justifyContent={'space-evenly'}
+                justifyContent={'space-around'}
             >
                 {
                     benefits.map((benefit) => (
-                        <VStack key={benefit.text}>
+                        <VStack
+                            key={benefit.text}
+                        >
                             <Icon
                                 as={benefit.icon}
                                 w={16}
