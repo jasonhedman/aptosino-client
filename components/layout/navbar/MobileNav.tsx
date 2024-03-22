@@ -3,7 +3,6 @@ import React from 'react';
 import {
     Box,
     Flex,
-    Text,
     CloseButton,
     Drawer,
     IconButton,
@@ -14,6 +13,7 @@ import {
 import { HamburgerIcon } from '@chakra-ui/icons';
 
 import Navlinks from './navLinks';
+import LogoText from "@/components/utilities/LogoText";
   
 const MobileNav: React.FC = () => {
 
@@ -50,12 +50,7 @@ const MobileNav: React.FC = () => {
                             justifyContent="space-between"
                             p={4}
                         >
-                            <Text 
-                                fontSize="2xl"
-                                fontWeight="bold"
-                            >
-                                Aptosino
-                            </Text>
+                            <LogoText />
                             <CloseButton 
                                 display={{ base: 'flex', md: 'none' }} 
                                 onClick={onClose} 

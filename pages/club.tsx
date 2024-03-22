@@ -1,22 +1,26 @@
+import React from 'react';
+
 import Head from "next/head";
 
 import Layout from "@/components/layout";
-import Stake from "@/components/stake";
+import Club from "@/components/club";
 
-export default function StakePage() {
+const ClubPage = () => {
     return (
         <>
             <Head>
-                <title>Stake - LLC</title>
-                <meta name="description" content="Deposit APT to back the house and earn fees" />
+                <title>Club - LLC</title>
+                <meta name="description" content="Join the Club" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
                 <Layout>
-                    <Stake />
+                    <Club />
                 </Layout>
             </main>
         </>
     );
-}
+};
+
+export default ClubPage;

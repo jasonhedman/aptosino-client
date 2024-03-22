@@ -1,8 +1,9 @@
 import React from 'react';
 
-import {Heading, SimpleGrid, Text, VStack} from "@chakra-ui/react";
+import {Image, SimpleGrid, Text, VStack} from "@chakra-ui/react";
 import games from "@/data/games";
 import GameCard from "@/components/home/GameCard";
+import LogoText from "@/components/utilities/LogoText";
 
 const Home = () => {
     return (
@@ -12,9 +13,15 @@ const Home = () => {
             maxW={'640px'}
         >
             <VStack>
-                <Heading>
-                    Aptosino
-                </Heading>
+                <Image
+                    src={'/logo.png'}
+                    alt={'Logo'}
+                    w={'100px'}
+                />
+                <LogoText
+                    direction={'row'}
+                    size={'4xl'}
+                />
                 <Text>
                     The first provably-fair, full-transparent, on-chain casino.
                 </Text>

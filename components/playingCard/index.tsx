@@ -182,14 +182,8 @@ const PlayingCard: React.FC<Props> = ({ card, height, shouldFlip, flipOffset }) 
                         <Image
                             src={'/logo.png'}
                             boxSize={12}
-                            alt={'Aptosino'}
+                            alt={'Logo'}
                         />
-                        <Text
-                            fontWeight={'bold'}
-                            color={'black'}
-                        >
-                            Aptosino
-                        </Text>
                     </VStack>
                 </Box>
             </Box>

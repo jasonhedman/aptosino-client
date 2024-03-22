@@ -7,7 +7,7 @@ export default function Blackjack() {
     return (
         <>
             <Head>
-                <title>Blackjack - Aptosino</title>
+                <title>Blackjack - LLC</title>
                 <meta name="description" content="Classic card game implemented on-chain" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />

@@ -7,17 +7,18 @@ import {
     HStack,
     Image,
     Box,
-    Heading
 } from '@chakra-ui/react'
 
 import ConnectWallet from './ConnectWallet';
 import ColorModeToggle from './ColorModeToggle';
 import MobileNav from './MobileNav';
 import Navlinks from './navLinks';
+import LogoText from "@/components/utilities/LogoText";
 
-export const navbarHeight = 20;
+export const navbarHeight = 24;
   
-const Navbar : React.FC = () => {    
+const Navbar : React.FC = () => {
+
     return (
         <Flex
             position='absolute'
@@ -41,15 +42,9 @@ const Navbar : React.FC = () => {
                         src="/logo.png"
                         height={12}
                         width={12}
-                        alt='Aptosino Logo'
+                        alt='Logo'
                     />
-                    <Heading
-                        fontSize='2xl'
-                        fontWeight='bold'
-                        color={'brand.500'}
-                    >
-                        Aptosino
-                    </Heading>
+                    <LogoText />
                 </HStack>
             </Link>
             <Box

@@ -14,7 +14,7 @@ const IncorrectNetwork = () => {
             Incorrect Network
         </Text>
         <Text>
-            Aptosino is currently only available on the Aptos Randomnet. You must connect your wallet and switch to the Aptos Randomnet to use Aptosino.
+            Lucky Leopards Club is currently only available on the Aptos Randomnet. You must connect your wallet and switch to the Aptos Randomnet to access the ranDapp.
         </Text>
     </Card>
   )
