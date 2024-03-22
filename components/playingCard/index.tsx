@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Box, BoxProps, Image, Text, VStack} from "@chakra-ui/react";
+import {Box, BoxProps, Image, ResponsiveValue, Text, VStack} from "@chakra-ui/react";
 
 import {Suit, Rank, Card} from "@/types/Card";
 
@@ -58,13 +58,19 @@ const NumberAndSuit: React.FC<NumberAndSuitProps> = ({ rank, suit, ...rest }) =>
             {...rest}
         >
             <Text
-                fontSize={'2xl'}
+                fontSize={{
+                    base: 'md',
+                    md: '2xl'
+                }}
                 lineHeight={1}
             >
                 {resolveRank(rank)}
             </Text>
             <Text
-                fontSize={'2xl'}
+                fontSize={{
+                    base: 'md',
+                    md: '2xl'
+                }}
                 lineHeight={1}
             >
                 {resolveSuitFragment(suit)}
@@ -75,7 +81,7 @@ const NumberAndSuit: React.FC<NumberAndSuitProps> = ({ rank, suit, ...rest }) =>
 
 interface Props {
     card: Card,
-    height: number,
+    height: number | ResponsiveValue<number>,
     shouldFlip?: boolean,
     flipOffset?: number,
 }
@@ -140,7 +146,10 @@ const PlayingCard: React.FC<Props> = ({ card, height, shouldFlip, flipOffset }) 
                             left={1}
                         />
                         <Text
-                            fontSize={'6xl'}
+                            fontSize={{
+                                base: '2xl',
+                                md: '5xl'
+                            }}
                             lineHeight={1}
                             position={'absolute'}
                             top={'50%'}

@@ -1,5 +1,7 @@
 import React from 'react';
-import {Button, HStack, VStack} from "@chakra-ui/react";
+
+import {Button, Stack, VStack} from "@chakra-ui/react";
+
 import CoinAmountInput from "@/components/utilities/CoinAmountInput";
 import SliderInput from "@/components/utilities/SliderInput";
 
@@ -28,9 +30,16 @@ const CreateBoard: React.FC<Props> = ({ betAmount, setBetAmount, numCols, setNum
                 label={"Bet Amount"}
                 symbol={"APT"}
             />
-            <HStack
+            <Stack
                 w={'100%'}
-                spacing={8}
+                spacing={{
+                    base: 2,
+                    md: 8
+                }}
+                direction={{
+                    base: 'column',
+                    md: 'row'
+                }}
             >
                 <SliderInput
                     value={numCols}
@@ -53,7 +62,7 @@ const CreateBoard: React.FC<Props> = ({ betAmount, setBetAmount, numCols, setNum
                     max={numCols * numRows - 1}
                     label={"Mines"}
                 />
-            </HStack>
+            </Stack>
             <Button
                 onClick={createBoard}
                 colorScheme={'brand'}

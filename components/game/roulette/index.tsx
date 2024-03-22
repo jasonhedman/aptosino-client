@@ -200,8 +200,14 @@ const RouletteGame = () => {
                 <Box
                     display="grid"
                     gridAutoFlow="column dense"
-                    gridTemplateRows="repeat(3, 1fr)"
-                    gridTemplateColumns="repeat(12, 1fr)"
+                    gridTemplateRows={{
+                        base: "repeat(6, 1fr)",
+                        md: "repeat(3, 1fr)"
+                    }}
+                    gridTemplateColumns={{
+                        base: "repeat(6, 1fr)",
+                        md: "repeat(12, 1fr)"
+                    }}
                     gap={1}
                     width="100%"
                 >

@@ -1,5 +1,5 @@
 import React from 'react';
-import {HStack} from "@chakra-ui/react";
+import {Stack} from "@chakra-ui/react";
 import Hand from "@/components/game/blackjack/Hand";
 import {Card} from "@/types/Card";
 
@@ -16,8 +16,12 @@ const dummyCards: Card[] = [
 
 const HandPreview = () => {
     return (
-        <HStack
+        <Stack
             w={'100%'}
+            direction={{
+                base: 'column',
+                md: 'row'
+            }}
         >
             <Hand
                 cards={dummyCards}
@@ -29,7 +33,7 @@ const HandPreview = () => {
                 isPlayer={false}
                 handValue={[]}
             />
-        </HStack>
+        </Stack>
     );
 };
 

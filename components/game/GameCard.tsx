@@ -30,7 +30,13 @@ const GameCard: React.FC<Props> = ({ game, children }) => {
                     <Heading>
                         {game.title}
                     </Heading>
-                    <Text>
+                    <Text
+                        fontSize={{
+                            base: 'xs',
+                            md: 'md'
+                        }}
+                        opacity={0.75}
+                    >
                         {game.description}
                     </Text>
                 </VStack>

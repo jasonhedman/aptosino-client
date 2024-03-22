@@ -52,8 +52,6 @@ const Tile: React.FC<Props> = ({ isGem, isRevealed, onClick, isGameOver, isGameA
             h={'100%'}
             ref={buttonRef}
             cursor={isRevealed || isGameOver || !isGameActive ? 'not-allowed' : 'pointer'}
-
-
         />
     );
 };

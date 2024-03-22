@@ -34,7 +34,10 @@ const Hand: React.FC<Props> = ({ cards, isPlayer, shouldFlip, handValue }) => {
                         <PlayingCard
                             key={`${card.suit}-${card.rank}-${index}`}
                             card={card}
-                            height={150}
+                            height={{
+                                base: 100,
+                                md: 150
+                            }}
                             shouldFlip={shouldFlip}
                         />
                     ))

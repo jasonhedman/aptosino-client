@@ -24,7 +24,7 @@ const CoinBalance: React.FC<Props> = ({ address, coinType, symbol, decimals, fon
             fontSize={fontSize}
             fontWeight="bold"
         >
-            {balance} {symbol}
+            {balance.toFixed(4)} {symbol}
         </Text>
     );
 };
