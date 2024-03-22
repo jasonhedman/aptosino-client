@@ -18,19 +18,7 @@ import useViewFunction from "@/hooks/useViewFunction";
 import {toAptos} from "@/services/utils";
 import {useToast} from "@chakra-ui/react";
 import useDelayedMemo from "@/hooks/useDelayedMemo";
-
-export enum GameStates {
-    PLAYING = "Playing",
-    RESOLVED = "Resolved",
-}
-
-export enum Results {
-    BUST = "You Busted",
-    PLAYER_WIN = "You Won!",
-    BLACKJACK = "You got Blackjack!",
-    DEALER_WIN = "The Dealer Won",
-    DRAW = "You Drew"
-}
+import {GameStates, Results} from "@/types/Blackjack";
 
 const useBlackjack = (handAddress: string) => {
 
@@ -66,7 +54,7 @@ const useBlackjack = (handAddress: string) => {
             if(bestDealerValue === 21) {
                 setResult(Results.DRAW);
                 toast({
-                    title: "Draw!",
+                    title: "Push!",
                     status: "info",
                     duration: 3000,
                     isClosable: true
@@ -110,7 +98,7 @@ const useBlackjack = (handAddress: string) => {
         } else {
             setResult(Results.DRAW);
             toast({
-                title: "Draw!",
+                title: "Push!",
                 status: "info",
                 duration: 3000,
                 isClosable: true

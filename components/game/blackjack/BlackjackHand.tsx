@@ -5,9 +5,11 @@ import {Box, Button, HStack, Stack, Text, VStack} from "@chakra-ui/react";
 import StartGame from "@/components/game/blackjack/StartGame";
 import Hand from "@/components/game/blackjack/Hand";
 
-import useBlackjack, {GameStates, Results} from "@/hooks/games/blackjack/useBlackjack";
+import useBlackjack from "@/hooks/games/blackjack/useBlackjack";
 
 import {makeConfetti} from "@/services/confetti";
+
+import {GameStates, Results} from "@/types/Blackjack";
 
 
 interface Props {

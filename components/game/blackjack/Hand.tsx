@@ -43,29 +43,20 @@ const Hand: React.FC<Props> = ({ cards, isPlayer, shouldFlip, handValue }) => {
                     ))
                 }
                 {
-                    isPlayer ? (
-                        cards.length < 2 && (
-                            Array.from({length: 2 - cards.length}).map((_, index) => (
-                                <PlayingCard
-                                    key={index}
-                                    card={{
-                                        suit: 1,
-                                        rank: 1
-                                    }}
-                                    height={150}
-                                />
-                            ))
-                        )
-                    ) : (
-                        cards.length < 1 && (
+                    cards.length < 2 && (
+                        Array.from({length: 2 - cards.length}).map((_, index) => (
                             <PlayingCard
+                                key={index}
                                 card={{
                                     suit: 1,
                                     rank: 1
                                 }}
-                                height={150}
+                                height={{
+                                    base: 100,
+                                    md: 150
+                                }}
                             />
-                        )
+                        ))
                     )
                 }
             </HStack>
