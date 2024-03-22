@@ -31,7 +31,7 @@ const useMines = () => {
     }, [numRows, numCols]);
 
     const isDisabled = useMemo(() => {
-        return betAmount <= 0 || numCols <= 0 || numRows <= 0 || numMines <= 0;
+        return betAmount <= 0 || numCols <= 0 || numRows <= 0 || numMines <= 0 || !address;
     }, [betAmount, numCols, numRows, numMines]);
 
     const fetchGameData = useCallback(async (address: string) => {

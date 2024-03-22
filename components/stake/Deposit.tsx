@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Text, VStack} from "@chakra-ui/react";
 import CoinAmountInput from "@/components/utilities/CoinAmountInput";
+import useWallet from "@/hooks/useWallet";
 
 interface Props {
     depositAmount: number;
@@ -10,6 +11,9 @@ interface Props {
 }
 
 const Deposit: React.FC<Props> = ({ depositAmount, setDepositAmount, deposit, houseSharesPerAPT }) => {
+
+    const { connected } = useWallet();
+
     return (
         <VStack
             w={'100%'}
@@ -35,6 +39,7 @@ const Deposit: React.FC<Props> = ({ depositAmount, setDepositAmount, deposit, ho
                 onClick={deposit}
                 colorScheme={'brand'}
                 w={'100%'}
+                isDisabled={!connected || depositAmount <= 0}
             >
                 Deposit
             </Button>

@@ -3,6 +3,7 @@ import React from 'react';
 import {Button, Text, VStack} from "@chakra-ui/react";
 
 import CoinAmountInput from "@/components/utilities/CoinAmountInput";
+import useWallet from "@/hooks/useWallet";
 
 interface Props {
     withdrawAmount: number;
@@ -12,6 +13,9 @@ interface Props {
 }
 
 const Withdraw: React.FC<Props> = ({ withdrawAmount, setWithdrawAmount, withdraw, APTperHouseShares }) => {
+
+    const { connected } = useWallet();
+
     return (
         <VStack
             w={'100%'}
@@ -37,6 +41,7 @@ const Withdraw: React.FC<Props> = ({ withdrawAmount, setWithdrawAmount, withdraw
                 onClick={withdraw}
                 colorScheme={'brand'}
                 w={'100%'}
+                isDisabled={!connected || withdrawAmount <= 0}
             >
                 Withdraw
             </Button>
