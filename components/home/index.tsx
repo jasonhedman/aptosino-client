@@ -28,7 +28,7 @@ const Home = () => {
                     <Text
                         textAlign={'center'}
                     >
-                        The first provably-fair, full-transparent, on-chain casino.
+                        The first provably-fair, fully-on-chain casino.
                     </Text>
                 </VStack>
                 <SimpleGrid
