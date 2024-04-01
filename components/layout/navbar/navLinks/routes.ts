@@ -2,7 +2,6 @@ import { IconType } from "react-icons";
 
 import {MdCasino} from "react-icons/md";
 import {FaHouse} from "react-icons/fa6";
-import {ImClubs} from "react-icons/im";
 
 export interface Route {
     name: string;
@@ -20,10 +19,5 @@ export const routes: Route[] = [
         name: "Stake",
         href: "/stake",
         icon: FaHouse
-    },
-    {
-        name: "Club",
-        href: "/club",
-        icon: ImClubs
     }
 ];
